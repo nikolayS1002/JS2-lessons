@@ -7,7 +7,7 @@ const products = [
 
 const renderProduct = (title, price) => {
     return `<div class="product-item">
-                <h3>${title}<h3>
+                <h3>${title}</h3>
                 <p>${price}</p>
                 <button class="buy-btn">Купить</button>
            </div>`
