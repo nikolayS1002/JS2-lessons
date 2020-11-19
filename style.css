@@ -1,0 +1,16 @@
+.btn-cart {
+    margin: 50px 0 30px 50px;
+}
+
+.products {
+    min-width: 400px;
+    min-height: 500px;
+}
+
+.product-item {
+    margin: 10px 0 0 20px;
+    display: flex;
+    justify-content: space-between;
+    width: 500px;
+    background-color: #ddd;
+}
