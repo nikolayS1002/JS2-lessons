@@ -1,7 +1,7 @@
 header {
     width: 100%;
     background: #ddd;
-    height: 130px;
+    min-height: 130px;
 }
 
 .btn-cart {
@@ -27,6 +27,13 @@ header {
 .btn-cart:active {
     color: #07070e;
     background-color: lightgreen;
+}
+
+.cart {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+    background: #333;
 }
 
 .products {

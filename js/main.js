@@ -1,38 +1,75 @@
-const products = [
-    { ud: 1, title: 'Notebook', price: 2000, img: 'img/img_moving.jpg' },
-    { ud: 2, title: 'Mouse', price: 20, img: 'img/img_moving.jpg' },
-    { ud: 3, title: 'Keyboard', price: 200, img: 'img/img_moving.jpg' },
-    { ud: 4, title: 'Gamepad', price: 50, img: 'img/img_moving.jpg' },
-]
+const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses'
+
 
 class ProductsList {
     constructor(container = '.products') {
         this.container = container
-        this.goods = []
-        this.allProducts = []
-        this._fetchProducts()
+        this.goods = [] // массив товаров из JSON
+        this._getProducts()
+            .then(data => {
+                this.goods = [...data]
+                this.render()
+                    // console.log(this._totalListSum())
+            })
     }
 
-    _fetchProducts() {
-        this.goods = [
-            { ud: 1, title: 'Notebook', price: 2000, img: 'img/img_moving.jpg' },
-            { ud: 2, title: 'Mouse', price: 20, img: 'img/img_moving.jpg' },
-            { ud: 3, title: 'Keyboard', price: 200, img: 'img/img_moving.jpg' },
-            { ud: 4, title: 'Gamepad', price: 50, img: 'img/img_moving.jpg' },
-        ]
+    _getProducts() {
+        return fetch(`${API}/catalogData.json`)
+            .then(result => result.json())
+            .catch(error => {
+                console.log(error)
+            })
     }
 
     render() {
         const block = document.querySelector(this.container)
         for (let product of this.goods) {
             const productObject = new ProductItem(product)
-            this.allProducts.push(productObject)
-                // block.innerHTML += productObject.render()
             block.insertAdjacentHTML('beforeend', productObject.render())
         }
     }
 
-    totalListSum() {
+    _totalListSum() {
+        return this.goods.reduce(function(total, item) {
+            return total + item.price
+        }, 0)
+    }
+
+}
+
+class Cart {
+    constructor(container = '.cart') {
+        this.container = container
+        this.goods = [] // массив товаров из JSON
+        this._getProducts()
+            .then(data => {
+                this.goods = [...data.contents]
+                this.render()
+                console.log('Цена товаров в корзине: ' + this._totalCartSum())
+            })
+    }
+
+    _getProducts() {
+        return fetch(`${API}/getBasket.json`)
+            .then(result => result.json())
+            .catch(error => {
+                console.log(error)
+            })
+    }
+
+    render() {
+        const block = document.querySelector(this.container)
+        for (let product of this.goods) {
+            const productObject = new ProductItem(product)
+                // this.allProducts.push(productObject)
+            block.insertAdjacentHTML('beforeend', productObject.render())
+        }
+    }
+
+    addItem() {}
+    removeItem() {}
+
+    _totalCartSum() {
         return this.goods.reduce(function(total, item) {
             return total + item.price
         }, 0)
@@ -41,11 +78,11 @@ class ProductsList {
 }
 
 class ProductItem {
-    constructor(product) {
-        this.title = product.title
+    constructor(product, img = 'img/img_moving.jpg') {
+        this.title = product.product_name
         this.price = product.price
-        this.id = product.id
-        this.img = product.img
+        this.id = product.id_product
+        this.img = img
     }
     render() {
         return `<div class="product-item">
@@ -57,13 +94,7 @@ class ProductItem {
     }
 }
 
-class Cart {
-    constructor() {}
-    render() {}
-    addItem() {}
-    removeItem() {}
-    cartSum() {}
-}
+
 
 class CartItem {
     constructor() {}
@@ -71,5 +102,4 @@ class CartItem {
 }
 
 let list = new ProductsList()
-list.render()
-console.log(list._totalListSum())
+let myCart = new Cart()
