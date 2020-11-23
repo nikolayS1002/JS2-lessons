@@ -32,7 +32,7 @@ class ProductsList {
         }
     }
 
-    _totalListSum() {
+    totalListSum() {
         return this.goods.reduce(function(total, item) {
             return total + item.price
         }, 0)
