@@ -56,8 +56,8 @@ class Item {
                         <h3>${this.product_name}</h3>
                         <p>${this.price}</p>
                         <button class="buy-btn"
-                        data-id="${this.id_product}
-                        data-name="${this.product_name}
+                        data-id="${this.id_product}"
+                        data-name="${this.product_name}"
                         data-price="${this.price}">Купить</button>
                     </div>
                 </div>`
@@ -137,9 +137,9 @@ class Cart extends List {
             })
     }
     _updateCart(product) {
-        let block = document.querySelector(`.cart-item[data-id="${product.productId}"]`)
+        let block = document.querySelector(`.cart-item[data-id="${product.id_product}"]`)
         block.querySelector('.product-quantity').textContent = `Quantity: ${product.quantity}`
-        block.querySelector('.product-price').textContent = `Quantity: $${product.quantity*product.price}`
+        block.querySelector('.product-price').textContent = `Price: $${product.quantity*product.price}`
     }
     _init() {
         document.querySelector('.btn-cart').addEventListener('click', () => {
