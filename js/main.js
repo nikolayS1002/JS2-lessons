@@ -94,19 +94,6 @@ class Cart extends List {
             .then(data => this.handleData(data.contents)) // отрисовка товаров корзины
             // console.log('Цена товаров в корзине: ' + this._totalCartSum())
     }
-
-    _init() {
-        document.querySelector(this.container).addEventListener('click', el => {
-            if (el.target.classList.contains('buy-btn')) {
-                this.cart.addProduct(el.target)
-            }
-        })
-    }
-
-    test() {
-        return this.getJson(`${API}/addToBasket.json`)
-    }
-
     addProduct(element) {
         this.getJson(`${API}/addToBasket.json`)
             .then(data => {
@@ -161,7 +148,6 @@ class Cart extends List {
         document.querySelector(this.container).addEventListener('click', e => {
             if (e.target.classList.contains('del-btn')) {
                 this.removeProduct(e.target)
-                console.log(e.target)
             }
         })
     }
@@ -199,6 +185,3 @@ const list2 = {
 
 let myCart = new Cart()
 let products = new ProductsList(myCart)
-    // console.log(myCart)
-
-console.log(`${API}/addToBascet.json`)
