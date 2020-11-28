@@ -4,6 +4,10 @@ header {
     min-height: 130px;
 }
 
+.invisible {
+    display: none;
+}
+
 .btn-cart {
     margin: 50px 100px 0 0;
     float: right;
@@ -29,7 +33,7 @@ header {
     background-color: lightgreen;
 }
 
-.cart {
+.cart-block {
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 40px;
