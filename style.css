@@ -27,12 +27,6 @@ header {
     display: flex;
 }
 
-.search-form {
-    /* color: #fff;
-    background-color: transparent;
-    border-bottom: 1px solid #fff; */
-}
-
 .search-field {
     color: #fff;
     background-color: transparent;

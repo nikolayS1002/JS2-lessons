@@ -1,3 +1,10 @@
+let str = document.querySelector('.text')
+console.log(str.innerHTML)
+    // str.innerHTML = str.innerHTML.replace(/'/g, '"')
+str.innerHTML = str.innerHTML.replace(/\B'|'\B/g, '"')
+console.log(str.innerHTML)
+
+
 // // синтаксис 1
 // let regexp = new RegExp('само регулярное выражение', флаги)
 
@@ -9,9 +16,9 @@
 // g - множественный поиск
 // m - многострочный поиск
 
-let str = "Язык JavaScript называется из-за популярносты языка Java"
-let regexp = new RegExp('java', 'i')
-    // console.log(regexp.test(str))
+// let str = "Язык JavaScript называется из-за популярносты языка Java"
+// let regexp = new RegExp('java', 'i')
+// console.log(regexp.test(str))
 
 // string methods
 // search
@@ -49,4 +56,4 @@ let regexp = new RegExp('java', 'i')
 
 // test@mail.ru
 
-console.log("test@mail.ru".match(/[a-zа-яё0-9._-]+@[a-z0-9-_]+\.[a-zа-я]{2,4}$/iu))
+// console.log("test@mail.ru".match(/[a-zа-яё0-9._-]+@[a-z0-9-_]+\.[a-zа-я]{2,4}$/iu))
