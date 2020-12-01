@@ -7,6 +7,7 @@ class List {
         this.url = url
         this.goods = [] // массив товаров из JSON
         this.allProducts = []
+        this.filtered = []
         this._init() // регистрируем кнопку которая прописана в классе наследнике
     }
 
@@ -34,6 +35,19 @@ class List {
 
     _totalListSum() {
         return this.goods.reduce((total, item) => total = total + item.price, 0)
+    }
+
+    filter(value) {
+        const regexp = new RegExp(value, 'i')
+        this.filtered = this.allProducts.filter(product => regexp.test(product.product_name))
+        this.allProducts.forEach(el => {
+            const block = document.querySelector(`.product-item[data-id="${el.id_product}"]`)
+            if (!this.filtered.includes(el)) {
+                block.classList.add('invisible')
+            } else {
+                block.classList.remove('invisible')
+            }
+        })
     }
 
     _init() {
@@ -77,6 +91,10 @@ class ProductsList extends List {
             if (el.target.classList.contains('buy-btn')) {
                 this.cart.addProduct(el.target)
             }
+        })
+        document.querySelector('.search-form').addEventListener('submit', e => {
+            e.preventDefault()
+            this.filter(document.querySelector('.search-field').value)
         })
     }
 }
