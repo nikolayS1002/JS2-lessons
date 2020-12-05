@@ -27,7 +27,7 @@ header {
     display: flex;
 }
 
-.search-field {
+.search-form {
     color: #fff;
     background-color: transparent;
     border-bottom: 1px solid #fff;
