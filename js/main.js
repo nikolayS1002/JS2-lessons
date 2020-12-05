@@ -7,8 +7,8 @@ const app = new Vue({
         showCart: false,
         catalogUrl: '/catalogData.json',
         cartUrl: '/getBasket.json',
-        cartItems: [1, 2],
-        filtered: [],
+        cartItems: [1],
+        filtered: [1],
         imgCart: 'img/img_moving.jpg',
         products: [],
         imgCatalog: 'img/img_moving.jpg',
@@ -49,15 +49,15 @@ const app = new Vue({
             let regexp = new RegExp(this.uesrSearch, 'i')
             this.filtered = this.products.filter(el => regexp.test(el.product_name))
         },
-        getCatalog() {
-            this.getJson(`${API + this.cartUrl}`)
-                .then(data => {
-                    for (let item of data) {
-                        this.filtered.push(item)
-                        this.products.push(item)
-                    }
-                })
-        },
+        // getCatalog() {
+        //     this.getJson(`${API + this.cartUrl}`)
+        //         .then(data => {
+        //             for (let item of data) {
+        //                 this.filtered.push(item)
+        //                 this.products.push(item)
+        //             }
+        //         })
+        // },
         mounted() {
             this.getJson(`${API + this.cartUrl}`)
                 .then(data => {
@@ -72,7 +72,6 @@ const app = new Vue({
                         this.products.push(item)
                     }
                 })
-
             this.getJson(`getProducts.json`)
                 .then(data => {
                     for (let item of data) {
