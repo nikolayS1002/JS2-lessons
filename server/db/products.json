@@ -1,0 +1,13 @@
+[{
+        "id_product": 101,
+        "product_name": "Ноутбук",
+        "price": 45600,
+        "img": "img/img1"
+    },
+    {
+        "id_product": 102,
+        "product_name": "Мышка",
+        "price": 1000,
+        "img": "img/img2"
+    }
+]
